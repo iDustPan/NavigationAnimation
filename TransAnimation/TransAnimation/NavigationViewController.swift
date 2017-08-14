@@ -20,6 +20,7 @@ class NavigationViewController: UINavigationController {
     private func addScreenPanGestureRecognizers() -> Void {
         let screenEdgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handlePanGestureRecognizer))
         screenEdgeGesture.edges = .left
+        view.addGestureRecognizer(screenEdgeGesture)
     }
     
     @objc private func handlePanGestureRecognizer(gesture: UIScreenEdgePanGestureRecognizer) -> Void {
