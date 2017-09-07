@@ -9,29 +9,26 @@
 import UIKit
 
 class NavigationViewController: UINavigationController {
+    
+    let animator = NavAnimationController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 
-        
+        self.delegate = animator
     }
     
-    private func addScreenPanGestureRecognizers() -> Void {
-        let screenEdgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handlePanGestureRecognizer))
-        screenEdgeGesture.edges = .left
-        view.addGestureRecognizer(screenEdgeGesture)
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        animator.opration = .push
+        super.pushViewController(viewController, animated: animated)
     }
-    
-    @objc private func handlePanGestureRecognizer(gesture: UIScreenEdgePanGestureRecognizer) -> Void {
-        
+
+    override func popViewController(animated: Bool) -> UIViewController? {
+        animator.opration = .pop
+        return super.popViewController(animated: animated)
     }
 
 }
 
-extension NavigationViewController: UINavigationControllerDelegate {
-    
-//    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-//        
-//    }
-}
+
