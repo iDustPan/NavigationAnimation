@@ -33,3 +33,15 @@ extension NavAnimationController: UINavigationControllerDelegate {
 4. Animation
 5. Tell transitionContext result
 
+
+- In navigation controller, should set the navigationController.delegate to this animator controller. or you can let this class extension conform `UINavigationControllerDelegate` and implement the delegate method, likes below.
+
+```
+
+func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+      return self;
+ }
+```
+
+Then the custom transition will work.
+
